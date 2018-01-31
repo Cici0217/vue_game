@@ -1,0 +1,98 @@
+/**
+ * 活动首页
+ * 
+ */
+/*活动列表*/
+body{padding-bottom: 1.8rem;}
+.activeList{
+    border-bottom:1px solid #dcdcdc; 
+}
+.activeList .activeList_icon{
+    /* margin:.4rem; */
+    padding-top: 0.4rem;
+    text-align: center;
+}
+.activeList .activeList_icon img{width:10rem;height:3.6rem;opacity: 0.5;}
+.activeList .activeList_content{
+	display: flex;
+	display: -webkit-box;
+    display: -webkit-flex;
+    padding:0 0 .4rem 0;   
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 10rem;
+    margin: 0 auto;
+}
+.activeList .activeList_text{flex:1; -webkit-box-flex: 1;-webkit-flex: 1}
+.activeList .activeList_text .title{font-size: .46rem;color:#313131;margin-bottom: .2rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+.activeList .activeList_text .time{font-size: .34rem;color:#777676;}
+/*.activeList .activeList_button input{vertical-align: top;background-color: #e67f20;color:#fff;border:.01rem solid #e67f20;height:.98rem;width:2.06rem;border-radius: .18rem;font-size: .44rem;}*/
+.activeList .activeList_button a{vertical-align: top;background-color: #e67f20;color:#fff;border:.01rem solid #e67f20;line-height:.98rem;width:2.06rem;border-radius: .18rem;font-size: .44rem;text-align: center;display: inline-block;}
+.activeList .activeList_button .active{background-color: #e67f20;}
+.activeList .activeList_button .unactive{background-color: #777676;border: .01rem solid #777676;}
+/*公告列表*/
+.noticeList{
+    /* display: flex; */
+    border-bottom:.01rem solid #dcdcdc;
+    padding:0 .6rem;
+    font-size:.46rem;
+    color:#313131;
+    position: relative;
+    padding-right: 3.2rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+.noticeList .noticeList_title{display: block;flex:1;-webkit-box-flex: 1;-webkit-flex: 1;display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.noticeList .noticeList_time{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 0.6rem;
+}
+
+/*公告详情页*/
+.announcementDetail .title{margin: .6rem 0;font-size: .5rem;color: #313131;margin-left: .2rem;font-weight: bold;}
+.announcementDetail .desc{font-size: .44rem;margin: 0 .4rem .4rem .2rem;color:#2c2c2c;line-height: .64rem;}
+.announcementDetail .desc p{word-wrap: break-word;}
+.announcementDetail .pic{margin-bottom: .4rem;margin-left: .4rem;margin-right:.4rem;}
+.announcementDetail .pic img{width:10rem;height:3.6rem;}
+
+/*活动详情页*/
+.activeDetail .topPic img{height:3.6rem;width:100%;display: block;}
+.activeDetail .title{padding:.4rem .4rem .4rem .2rem;font-size: .46rem; color:#313131;font-weight: bold;text-align: left;}
+.activeDetail .title p{min-height: 0.46rem;}
+.activeDetail .bar{height: .26rem;background-color: #efefef;margin-bottom: .4rem;}
+.activeDetail .desc{margin-left:.4rem;margin-bottom: .4rem;font-size:.44rem;color:#2c2c2c;margin-right: .4rem;line-height: .64rem;}
+.activeDetail .pic{margin:0 .4rem .72rem .4rem;}
+.activeDetail .pic img{width:10rem;height:3.6rem;}
+.activeDetail .activeTitle{font-size: .44rem;color:#6fa6ff;margin-bottom:.4rem;margin-left:.4rem;}
+.activeDetail .detail_desc{font-size: .44rem;margin-left: .4rem;margin-bottom:.4rem;margin-right:.4rem;color: #2c2c2c;line-height: .64rem;}
+.activeDetail .detail_desc p{word-wrap: break-word}
+.activeTab{
+    width: 100%;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    font-size: .52rem;
+    text-align: center;
+    background-color: #76aafd;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+.activeTab:active{background-color: #5394ff;}

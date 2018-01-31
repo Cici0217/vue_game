@@ -1,0 +1,47 @@
+.modal_error {
+    width: 10rem;
+    /* margin-left: .5rem; */
+    background-color: #fff;
+    border-radius: .39rem;
+    position: absolute;
+    z-index: 600;
+    /* top: 5rem; */
+    display: none;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    margin-left: -5rem;
+    margin-top: -2.7rem;
+}
+.modal_error .modal_error_footer {
+    width: 3.84rem;
+    height: .98rem;
+    font-size: .44rem;
+    color: #fff;
+    background-color: #6fa6ff;
+    margin-left: 3rem;
+    border-radius: .2rem;
+    /*横向排列居中*/
+    -webkit-justify-content:center;
+    justify-content:center;
+    -moz-box-pack:center;
+    -webkit--moz-box-pack:center;
+    box-pack:center;
+    /*纵向排列居中*/
+    align-items:center;
+    -webkit-align-items:center;
+    box-align:center;
+    -moz-box-align:center;
+    -webkit-box-align:center;
+    margin-bottom: 0.2rem;
+}
+
+.modal_error .modal_error_content {
+    font-size: .46rem;
+    color: #313131;
+    margin-top: .6rem;
+    margin-bottom: .6rem;
+    text-align: center;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+}

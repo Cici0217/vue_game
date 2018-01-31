@@ -1,0 +1,92 @@
+
+*{margin:0;padding:0;}
+dl,dd,dt,ul,li,ol{list-style-type:none;margin:0;padding:0;}
+a{outline:none;text-decoration:none;}
+img{vertical-align:middle;}
+i{font-style:normal;}
+.infolist{
+    color: #494949;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    float: left;
+}
+lable{
+	position:absolute;
+	width:5em;
+	left:0;
+	top:0;
+	overflow:hidden;
+	height:22px;
+	padding:8px 0;
+	line-height:22px;
+}
+
+.infolist .liststyle span{
+	position:relative;
+	display:inline-block;
+	border:0.03rem solid #d2d2d2;
+	border-radius:0.15rem;
+	cursor:pointer;
+	background:white;
+	float:left;
+	margin-right:0.34rem;
+	width: 2.66rem;
+	height: 0.88rem;
+	line-height: 0.88rem;
+}
+.infolist .liststyle span i{
+    display: block;
+	height: 0.85rem;
+    line-height: 0.85rem;
+	position:relative;
+	width:2.64rem;
+	color:#777676;
+	font-size: 0.34rem;
+	padding-left: 0.4rem;
+	background-image:url(../../images/select.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: right;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 0.56rem;
+}
+.infolist .liststyle span i:hover{
+	background-image:url(../../images/select_active.png);
+}
+
+.infolist .liststyle span ul{
+	width: 2.68rem;
+    position: absolute;
+    border: 0.03rem solid #d2d2d2;
+    background: white;
+    margin-bottom: 0.1rem;
+    display: none;
+    z-index: 10;
+    max-height: 3.9rem;
+    overflow-y: scroll !important;
+}
+.infolist .liststyle span ul li{
+	width:100%;
+	float:left;
+	overflow:hidden;
+	border-top:0.03rem solid #d2d2d2;
+}
+.infolist .liststyle span ul li:first-child{
+	border-top:0;
+}
+.infolist .liststyle span ul li a{
+	display:block;
+	height:0.76rem;
+	line-height:0.76rem;
+	color:#777676;
+	font-size: 0.34rem;
+	padding-left: 0.4rem;
+}
+.infolist .liststyle span ul li a:hover{
+	background: #77aafd;
+	color: #fff !important;
+}
