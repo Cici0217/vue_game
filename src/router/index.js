@@ -6,6 +6,7 @@ import VueResource from 'vue-resource'
 import ActiveDetail from '@/pages/activeDetail'
 import Giftpackage from '@/pages/giftpackage'
 import GameCenter from '@/pages/gameCenter'
+import Collect from '@/pages/gameCenter/collect'
 import GameCatogry from '@/pages/gameCatogry'
 import Gameinclassification from '@/pages/gameinclassification'
 import Welfare from '@/pages/welfare'
@@ -400,7 +401,14 @@ const vueRouter = new Router({
     {
       path: '/gameCenter',
       name: 'GameCenter',
-      component: GameCenter 
+      component: GameCenter,
+      children:[ 
+        {
+          path:'/collect',
+          name: 'Collect',
+          component: Collect
+        }
+      ] 
     },
     {
       path: '/activeDetail',

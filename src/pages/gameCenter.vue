@@ -47,104 +47,10 @@
 		        </div>
 		    
 		        <div class="plat-left-content" id="js-navPart">
-		            <div class="plat-left-content-main"> 
-		                <div class="content-part active">
-		                    <section class="game-part" style="border-bottom:none;">
-		                        <div class="game-part-title">
-		                            <h5>普通礼包</h5>
-		                        </div>
-		                        <div class="list_game_d" id="js-packageList" style="padding-bottom: 0.4rem;">
-		                            
-		                        <p class="nomore-info">暂无数据</p></div>
-		                    </section>
-		                </div>
-		                
-		                <div class="content-part">
-		                    <section class="game-part" style="border-bottom:none;">
-		                        <div class="list_game_e" id="js_todayServiceList"><p class="nomore-info">暂无数据</p></div>
-		                    </section>
-		                </div>
-		                <div class="content-part">
-		                    <section class="game-part" id="activePopup">
-		                        <div class="game-part-title">
-		                            <h5>活动</h5>
-		                        </div>
-		                        <div class="word_list_a" id="activeList" style="padding-bottom: 0.4rem;">
-		                            
-		                        <p class="nomore-info">暂无数据</p></div>
-		                    </section>
-		                    <section class="game-part" id="noticePopup" style="border-bottom:none;">
-		                        <div class="game-part-title">
-		                            <h5>游戏公告</h5>
-		                        </div>
-		                        <div class="word_list_b" id="noticeList" style="padding-bottom: 0.4rem;">
-		                            
-		                        <p class="nomore-info">暂无数据</p></div>
-		                    </section>
-		                    <section class="game-part" id="popup" style="display: none;border-bottom:none;">
-		                        <div class="word_list_a" style="font-size:initial;padding:0.4rem;">
-		                            <h4 class="game_center_title"></h4>
-		                            <img src="" style="width:100%;margin-top:.4rem;margin-bottom:.46rem;" class="game_center_img">
-		                            <p class="game_center_desc"></p>
-		                        </div>
-		                        
-		                    </section>
-		                </div>
-		                <div class="content-part" id="getMoreGameList">
-		                	<section class="game-part">     
-		                		<div class="game-part-title">         
-		                			<h5>排行榜</h5>     
-		                		</div>     
-		                		<div class="list_game_2" style="padding-bottom: 0.4rem;">         
-		                			<ul>  
-		                				<li>
-		                					<a href="game-center.html?game_id=185">                     
-			                					<div class="game_list_img">                         
-			                						<img src="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011901573805673758.png" data-lazyload="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011901573805673758.png" alt="" style="opacity: 1;">                     
-			                					</div>                     
-			                					<figure>                        
-			                						<h6>  
-			                							<span class="game-name">汪汪队1</span>                         
-			                						</h6>                          
-			                						<div class="game-tag-group">  
-			                							<span class="game-tag">莱德1</span>  
-			                						</div>  
-			                						<p>新游戏，快快加入1</p>                     
-			                					</figure>                     
-			                					<div class="list_game_btn">                         
-			                						<input type="button" data-gamename="排行榜" data-url="game-center.html?game_id=185" value="开始" class="app-btn app-btn-default">          
-			                					</div> 
-		                					</a>             
-		                				</li>               
-		                			</ul>          
-		                		</div>
-		                	</section>
-		                </div>
-		                <div class="content-part" style="height: 100%;position: absolute;left: 0;top: 0;right: 0;bottom: 0;background: #ffffff;">
-		                    <section class="plat-part">
-		                        <div class="plat-focus">
-		                            <h4 class="game_collect_name"></h4>
-		                            <h3>请关注公众号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一对一客服</h3>
-		                            <ul>
-		                                <li>
-		                                    <img class="logo-a" src="../assets/images/plat/plat_img_logo-a.png" alt="">
-		                                    <img class="logo-b" src="../assets/images/plat/plat_img_logo-b.png" alt="">
-		                                </li>
-		                                <li>
-		                                    <img class="QR" src="../assets/images/plat/plat_img_QR.png" alt="">
-		                                    <figure>
-		                                        <p>1、长按上方二维码，选择识别图中二维码</p>
-		                                        <p>2、点击关注公众号</p>
-		                                    </figure>
-		                                </li>
-		                            </ul>
-		                        </div>
-		                    </section>
-		                </div>
-		            </div>
+		        	<router-view />
 		        </div>
 		    </section>
-		    <quit-game :is-quit-gmae-model-show="isQuitGameModelShow"  close-quit-game-model="closeQuitGameModel()"></quit-game>
+		    <quit-game :is-quit-gmae-model-show="isQuitGameModelShow"  @close-quit-game-model="closeQuitGameModel()"></quit-game>
 		    <section class="plat-right-wrap">
 		        <ul>
 		            <li id="js-closePlatform" @click="closePlatWrap()">
@@ -200,6 +106,7 @@ export default{
 		},
 		collect(){
 			this.isCollected = !this.isCollected
+			this.$router.push('/collect')
 		},
 		quitGame(){
 			this.isQuitGameModelShow = true
