@@ -7,6 +7,7 @@ import ActiveDetail from '@/pages/activeDetail'
 import Giftpackage from '@/pages/giftpackage'
 import GameCenter from '@/pages/gameCenter'
 import Collect from '@/pages/gameCenter/collect'
+import GetMoreGameList from '@/pages/gameCenter/getMoreGameList'
 import GameCatogry from '@/pages/gameCatogry'
 import Gameinclassification from '@/pages/gameinclassification'
 import Welfare from '@/pages/welfare'
@@ -407,6 +408,11 @@ const vueRouter = new Router({
           path:'/collect',
           name: 'Collect',
           component: Collect
+        },
+        {
+          path:'/getMoreGameList',
+          name: 'GetMoreGameList',
+          component: GetMoreGameList
         }
       ] 
     },

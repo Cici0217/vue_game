@@ -18,7 +18,7 @@
 		                    <h4>ID:77908989</h4>
 		                    <p>G币:2500</p>
 		                </div>
-		                <div class="user-like" @click="collect()">
+		                <div class="user-like" @click="collect(isCollected)">
 		                    <input type="button" name="share" value="收藏" class="app-btn app-btn-white" v-if="isCollected">
 		                    <input type="button" name="share" value="已收藏" class="app-btn app-btn-white" v-else>
 		                </div>
@@ -39,10 +39,10 @@
 		                    <i class="app-icon plat-left-nav plat-icon-news"></i>
 		                    <p>资讯</p>
 		                </a>
-		                <a href="javascript:;">
+		                <router-link tag="a" to='/getMoreGameList'>
 		                    <i class="app-icon plat-left-nav plat-icon-more"></i>
 		                    <p>更多游戏</p>
-		                </a>
+		                </router-link>
 		            </nav>
 		        </div>
 		    
@@ -82,7 +82,7 @@ import quitGame from './quitGame'
 
 export default{
 	created() {
-		console.log(this.$route.query.game_id)
+		window.localStorage.setItem("game_id",this.$route.query.game_id)
 	},
 	components:{
 		quitGame
@@ -104,9 +104,9 @@ export default{
 		refreshPage(){
 			this.$router.go(0)
 		},
-		collect(){
+		collect(tag){
 			this.isCollected = !this.isCollected
-			this.$router.push('/collect')
+			this.$router.push({ path:'/collect', query:{ isCollected: tag }})
 		},
 		quitGame(){
 			this.isQuitGameModelShow = true
