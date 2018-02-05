@@ -11,7 +11,7 @@
 				<div class="registerFormBold">
 					<div class="registerFormElem">
 						<img src="../assets/images/leaguercenter/phone.png">
-						<input type="text" name="uPhone" class="uPhone" placeholder="请输入您的手机号码" readonly="readonly">
+						<input type="text" name="uPhone" class="uPhone" placeholder="请输入您的手机号码"  v-model="phonenumber">
 					</div>
 					<div class="registerFormElem">
 						<img src="../assets/images/leaguercenter/verifycode.png">
@@ -21,7 +21,7 @@
 						<!-- 原样式：a标签写的-->
 						<!-- <a href="javascript:;" onclick="common.getVerifyCode()" class="formVerify">获取验证码</a> -->
 						<!-- 禁用样式：'input-disabled' -->
-						<input class="formVerify" onclick="common.getVerifyCode()" type="button" value="获取验证码">
+						<input class="formVerify" @click="getVerifyCode()" type="button" value="获取验证码">
 					</div>
 					<div class="registerFormElem">
 						<img src="../assets/images/leaguercenter/passwd.png">
@@ -54,7 +54,13 @@ import ErrorTip from '../components/modal/errorTip'
 export default{
 	data(){
 		return{
-			isShow:false
+			isShow:false,
+			isforbidSend:true,
+			phonenumber:'',
+			params:{
+				phonenumber:this.phonenumber, 
+				verificationtype:0 
+			}
 		}
 	},
 	components:{
@@ -63,6 +69,16 @@ export default{
 	methods:{
 		submit(){
 			this.isShow = true
+		},
+		getVerifyCode(){
+			if(this.isforbidSend){	        
+		        this.$http.post('/apis/Account/verificationCode',{ params: this.params})
+		        .then((res)=>{
+		        	alert("发送成功")
+		        },(err)=>{
+		        	alert("获取验证码失败")
+		        })
+		    }
 		}
 	}
 }

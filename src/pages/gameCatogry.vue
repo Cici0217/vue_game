@@ -4,10 +4,11 @@
 		<div class="game_search_wrap" id="js-search">
 		    <div class="search_group">
 		        <div class="search-btn"></div>
-		        <input id="js-searchInput" class="app-input" v-model="search" placeholder="请输入游戏名称" type="text">
+		        <input id="js-searchInput"	class="app-input" v-model="search" placeholder="请输入游戏名称" type="text">
 		    </div>
 		    <div class="search-begin">
-		        <input id="js-searchBtn" type="button" name="share"  value="搜索" class="app-btn app-btn-text">        
+		        <input id="js-searchBtn" type="button" name="share"  value="搜索" class="app-btn app-btn-text" > 
+		        <!-- @click="searchGameCatogry(search)"> -->       
 		    </div>
 		</div>
 	    <section class="catogry-tag">
@@ -68,33 +69,17 @@
 export default{
 	data(){
 		return{
-			search:'一世之尊',
+			search: this.$route.query.gameInfo,
 			searchList:[],
 			classificationsofgame:[],
-			recommendList:[]	
+			recommendList:[],
+			isSearch:false	
 		}
 	},
 	created(){
-		this.$http.get('/apis/gamestore/search',{ params:{ pageNo:1, pageSize:10, key: this.search}})
-		.then((res)=>{
-			this.searchList = res.data.pageData
-		},(err)=>{
-			alert(22)
-		})
-
-		this.$http.get('/apis/gamestore/recommendedgame',{ params:{ position:3, label:0, column_id: 0}})
-		.then((res)=>{
-			this.recommendList = res.data.result
-		},(err)=>{
-			alert(22)
-		})
-
-		this.$http.get('/apis/gamestore/classificationsofgame')
-		.then((res)=>{
-			this.classificationsofgame = res.data.result
-		},(err)=>{
-			alert(err)
-		})	
+		if($.trim(this.search)!=""){
+			this.isSearch = true
+		}
 	},
 	methods:{
 		goFowardGameCenter(id){
@@ -107,7 +92,49 @@ export default{
 			},(err)=>{
 				alert(err)
 			})	
+		},
+		inputFunc(){
+			console.log(22)
+		},
+		searchGameCatogry(){
+			if( this.isSearch ){
+				this.$http.get('/apis/gamestore/search',{ params:{ pageNo:1, pageSize:10, key:this.$route.query.gameInfo }})
+				.then((res)=>{
+					this.searchList = res.data.pageData
+				},(err)=>{
+					alert(22)
+				})
+			}else{
+				this.$http.get('/apis/gamestore/recommendedgame',{ params:{ position:3, label:0, column_id: 0}})
+				.then((res)=>{
+					this.recommendList = res.data.result
+				},(err)=>{
+					alert(22)
+				})
+
+				this.$http.get('/apis/gamestore/classificationsofgame')
+				.then((res)=>{
+					this.classificationsofgame = res.data.result
+				},(err)=>{
+					alert(err)
+				})	
+			}
 		}
+		/*
+		searchGameCatogry(key){
+			if($.trim(key)==""){
+				alert("请输入您要搜索的内容！");
+			}else{
+				this.$http.get('/apis/gamestore/search',{ params:{ pageNo:1, pageSize:10, key:key }})
+				.then((res)=>{
+					this.searchList = res.data.pageData
+					console.log(this.searchList)
+				},(err)=>{
+					alert(22)
+				})
+			}	
+		}
+		*/
 	}
 }
 </script>

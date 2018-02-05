@@ -21,7 +21,7 @@
 		   	</div> 
 		</div>
 		<div class="content leaguer_content"> 
-			<div class="leaguerList" id="myinfo"> 
+			<router-link tag="div" to="/myInfo" class="leaguerList" id="myinfo"> 
 			    <div class="underline-wrap"> 
 			     <div class="leaguerList_icon ">
 			      <img src="../assets/images/leaguercenter/type.png" />
@@ -31,8 +31,8 @@
 			     </div> 
 			     <div class="leaguerList_arrow "></div> 
 			    </div> 
-			</div> 
-			<div class="leaguerList" id="charge"> 
+			</router-link> 
+			<router-link tag="div" to="/charge" class="leaguerList" id="charge"> 
 			    <div class="underline-wrap"> 
 			     <div class="leaguerList_icon ">
 			      <img src="../assets/images/leaguercenter/charge.png" />
@@ -42,7 +42,7 @@
 			     </div> 
 			     <div class="leaguerList_arrow "></div> 
 			    </div> 
-			</div> 
+			</router-link> 
 			<div class="leaguerList" id="certification" style="display: none;"> 
 			    <div class="underline-wrap"> 
 			     <div class="leaguerList_icon ">

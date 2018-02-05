@@ -1,9 +1,10 @@
 <template>
 	<div>
-		<div class="click_list" v-for="item in taklistData" v-if="item.taskid<4" @click="task(item.taskid, item.taskState)">
+		<div class="click_list" v-for="(item,index) in taklistData" v-if="item.taskid<4" @click="task(item.taskid, item.taskState)">
 			<div class="list">
 				<div class="list_icon">
-					<img src="../assets/images/welfare/pointtask_1.png" class="list_icon_img" />
+					<!-- <img src="../assets/images/welfare/pointtask_1.png" class="list_icon_img" /> -->
+					<img :src="listIcon(index)" class="list_icon_img" />
 				</div>
 				<div class="list_content">
 					<p class="list_content_title" data-taskid="1">{{ item.name }}</p>
@@ -48,10 +49,21 @@ export default{
 			if(taskState == 0){
 				if(taskId == 1){
 					this.isSignShow = true;
+
+					this.$http.post('/apis/Account/checkin',{ headers: { Authorization:window.localStorage.getItem('access_token')}, params: { "uid": window.localStorage.getItem('uid') } })
+					.then((res)=>{
+						$(".click_list").eq(0).find("button").val("已完成").addClass("finish")	
+					},(err)=>{
+
+					})
+
 				}else if(taskId == 3){
 					this.$router.push('/charge')
 				}
 			}
+		},
+		listIcon(index){
+			return require("../assets/images/welfare/pointtask_" + ( index + 1 ) +".png")
 		}
 	}
 }

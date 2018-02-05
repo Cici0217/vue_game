@@ -18,16 +18,16 @@
 		        		<div style="float:left;display:block;" class="loginInput">
 		           			<img src="../../assets/images/leaguercenter/loginperson.png">
 		           		</div>
-		           		<input type="text" name="uPhoneNumber" class="uPhoneNumber" placeholder="请输入手机号">
+		           		<input type="text" name="uPhoneNumber" class="uPhoneNumber" placeholder="请输入手机号" v-model="phonenumber">
 		           	</div>
 		           	<div style="overflow: hidden;">
 		           		<div style="float:left;display:block;" class="loginInput">
 		           			<img src="../../assets/images/leaguercenter/loginpassword.png">
 		           		</div>
-		           		<input type="password" name="uPass" class="uPass" placeholder="请输入密码">
+		           		<input type="password" name="uPass" class="uPass" placeholder="请输入密码" v-model="password">
 		           	</div>
 		           	<div class="showLoginError" style="display: none;"></div>
-		           	<div class="modal_login_btn">
+		           	<div class="modal_login_btn" @click="login()">
 		               登录
 		           	</div>
 		           	<div class="modal_login_footer">
@@ -50,6 +50,12 @@
 
 <script>
 export default{
+	data(){
+		return{
+			phonenumber:'',
+			password:''
+		}
+	},
 	props:{
 		isShowLoginModal:{
 			type:Boolean,
@@ -62,6 +68,14 @@ export default{
 		},
 		quickLogin(){
 			this.$emit("show-quick-login")
+		},
+		login(){
+			this.$http.post('/apis/Account/login', { params:{ phonenumber: this.phonenumber, password: this.password, channelid: 1, access_token_expire: ''}})
+			.then((res)=>{
+				alert(res)
+			},(err)=>{
+				alert(err)
+			})
 		}
 	}
 }

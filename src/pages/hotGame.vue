@@ -4,10 +4,10 @@
 		<div class="game_search_wrap" id="js-search">
 		    <div class="search_group">
 		        <div class="search-btn"></div>
-		        <input id="js-searchInput" class="app-input" placeholder="请输入游戏名称" type="text">
+		        <input id="js-searchInput" class="app-input" placeholder="请输入游戏名称" type="text" v-model="search">
 		    </div>
-		    <router-link to="/gameCatogry" tag="div" class="search-begin">
-		        <input id="js-searchBtn" type="button" name="share" value="搜索" class="app-btn app-btn-text">        
+		    <router-link :to="{ path:'/gameCatogry', query:{ gameInfo: search } }" tag="div" class="search-begin">
+		        <input id="js-searchBtn" type="button" name="share" value="搜索" class="app-btn app-btn-text">
 		    </router-link>
 		</div>
 		<div class="app-conten-wrap setting-bottom">
@@ -171,7 +171,8 @@ export default{
 		return {
 			hotGameData1:[],
 			hotGameData2:[],
-			classicGameData3:[]
+			classicGameData3:[],
+			search:'一世之尊'
 		}
 	},
 	created(){
