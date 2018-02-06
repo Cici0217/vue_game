@@ -29,7 +29,7 @@
 			<section class="game-mine"> 
 				<div class="mygame-slide-wrap"> 
 				    <div class="swiper-container mygame-swiper swiper-container-horizontal"> 
-				    	<div class="swiper-wrapper" id="js_mygameList"> 
+				    	<div class="swiper-wrapper" id="js_mygameList"> +
 					      	<div class="swiper-slide mygame-item swiper-slide-active" style="width: 76.5px;" v-for="item in mygameList"> 
 						       	<router-link tag="a" :to="{ path:'/gameCenter', query:{ game_id: item.id }}"> 
 						       		<img :src="item.icon_url" alt="" style="opacity: 1;" /> 
