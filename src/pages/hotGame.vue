@@ -30,30 +30,11 @@
 				<div class="mygame-slide-wrap"> 
 				    <div class="swiper-container mygame-swiper swiper-container-horizontal"> 
 				    	<div class="swiper-wrapper" id="js_mygameList"> 
-					      	<div class="swiper-slide mygame-item swiper-slide-active" style="width: 76.5px;"> 
-						       	<a href="game-center.html?game_id=197"> 
-						       		<img src="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011910223809457787.png" data-lazyload="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011910223809457787.png" alt="" style="opacity: 1;" /> 
-						       	</a>
-					      	</div>
-					      	<div class="swiper-slide mygame-item swiper-slide-next" style="width: 76.5px;"> 
-					       		<a href="game-center.html?game_id=185"> <img src="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011901573805673758.png" data-lazyload="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011901573805673758.png" alt="" style="opacity: 1;" /> 
-					       		</a>
-					      	</div>
-					      	<div class="swiper-slide mygame-item" style="width: 76.5px;"> 
-					       		<a href="game-center.html?game_id=199"> 
-					       			<img src="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011910265209987764.png" data-lazyload="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011910265209987764.png" alt="" style="opacity: 1;" /> 
-					       		</a>
-					      	</div>
-					      	<div class="swiper-slide mygame-item" style="width: 76.5px;"> 
-					       		<a href="game-center.html?game_id=203"> 
-					       			<img src="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/201801191032040414726.png" data-lazyload="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/201801191032040414726.png" alt="" style="opacity: 1;" /> 
-					       		</a>
-					      	</div>
-					      	<div class="swiper-slide mygame-item" style="width: 76.5px;"> 
-						       	<a href="game-center.html?game_id=201"> 
-						       		<img src="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/201801191029500711499.png" data-lazyload="http://gametest.phicomm.com:80/gamepic/images/2018/1/19/201801191029500711499.png" alt="" style="opacity: 1;" /> 
-						       	</a>
-					      	</div>
+					      	<div class="swiper-slide mygame-item swiper-slide-active" style="width: 76.5px;" v-for="item in mygameList"> 
+						       	<router-link tag="a" :to="{ path:'/gameCenter', query:{ game_id: item.id }}"> 
+						       		<img :src="item.icon_url" alt="" style="opacity: 1;" /> 
+						       	</router-link>
+					      	</div>					
 				    	</div> 
 				    </div> 
 				    <!-- <div class="pagination"></div> --> 
@@ -172,7 +153,8 @@ export default{
 			hotGameData1:[],
 			hotGameData2:[],
 			classicGameData3:[],
-			search:'一世之尊'
+			search:'一世之尊',
+			mygameList:[]
 		}
 	},
 	created(){
@@ -182,6 +164,13 @@ export default{
 			this.hotGameData2 = res.data.result[1].game;
 			this.classicGameData3 = res.data.result[2].game;
 	 
+		})
+		/* 我的游戏 */
+		this.$http.get('/apis/gamestore/mygame',{ params:{ uid: window.localStorage.getItem("uid") }})
+		.then((res)=>{
+			this.mygameList = res.data.result
+		},(err)=>{
+			alert(err)
 		})
 	},
 	methods:{

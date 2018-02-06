@@ -88,7 +88,7 @@ export default{
 			return 'game-col-' + index
 		},
 		goForwardGame(id){
-			this.$router.push({ path:'/gameCenter', query:{ game_id: id } })
+			this.$router.push({ path:'/gamedetail', query:{ game_id: id } })
 		}
 	}
 }

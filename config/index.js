@@ -15,6 +15,7 @@ module.exports = {
     proxyTable: {
         '/apis':{// ‘/apis’的别名
             target:'http://gametest.phicomm.com/gamecenter',//target指的是要代理的url 
+            //target:'http://www.joy84.com/gamecenter',//target指的是要代理的url 
             changeOrigin:true, //是否跨域
             pathRewrite:{
                 '^/apis':'' //需要rewrite重写

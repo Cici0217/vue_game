@@ -15,8 +15,8 @@
 		                    <img id="js-userHeadImg" src="../assets/images/leaguercenter/default_head.png">                
 		                </div>
 		                <div class="user-id" id="js-userIDGCorn">
-		                    <h4>ID:77908989</h4>
-		                    <p>G币:2500</p>
+		                    <h4>ID:{{ accountDetail.uid }}</h4>
+		                    <p>G币:{{ accountDetail.gbBalance }}</p>
 		                </div>
 		                <div class="user-like" @click="collect(isCollected)">
 		                    <input type="button" name="share" value="收藏" class="app-btn app-btn-white" v-if="isCollected">
@@ -27,10 +27,10 @@
 		                </div>
 		            </header>
 		            <nav class="plat-left-nav" id="js-platNav">
-		                <a class="active" href="javascript:;">
+		                <router-link tag="a" class="active" :to="{ path:'/giftPackage_gameCenter', query:{game_id: this.$route.query.game_id }}">
 		                    <i class="app-icon plat-left-nav plat-icon-package"></i>
 		                    <p>礼包</p>
-		                </a>
+		                </router-link>
 		                <a href="javascript:;">
 		                    <i class="app-icon plat-left-nav plat-icon-service"></i>
 		                    <p>开服</p>
@@ -39,7 +39,7 @@
 		                    <i class="app-icon plat-left-nav plat-icon-news"></i>
 		                    <p>资讯</p>
 		                </a>
-		                <router-link tag="a" to='/getMoreGameList'>
+		                <router-link tag="a" :to="{ path:'/getMoreGameList', query:{game_id: this.$route.query.game_id }}">
 		                    <i class="app-icon plat-left-nav plat-icon-more"></i>
 		                    <p>更多游戏</p>
 		                </router-link>
@@ -47,7 +47,9 @@
 		        </div>
 		    
 		        <div class="plat-left-content" id="js-navPart">
-		        	<router-view />
+		        	<div class="plat-left-content-main"> 
+		        		<router-view />
+		        	</div>
 		        </div>
 		    </section>
 		    <quit-game :is-quit-gmae-model-show="isQuitGameModelShow"  @close-quit-game-model="closeQuitGameModel()"></quit-game>
@@ -82,7 +84,35 @@ import quitGame from './quitGame'
 
 export default{
 	created() {
-		window.localStorage.setItem("game_id",this.$route.query.game_id)
+		/* 获取用户信息 */
+		this.$http.get('/apis/Account/accountDetail',{ params:{ uid: window.localStorage.getItem("uid") }, headers:{Authorization:window.localStorage.getItem('access_token')} })
+		.then((res)=>{
+			this.accountDetail = res.data.result
+		},(err)=>{
+			alert(err)
+		})
+
+		/* 设置收藏状态 * /
+		if(accountDetail.sign_status===0){
+			this.isCollected = false
+		}else{
+			this.isCollected = true
+		}
+
+		/* 初始化ifram游戏url */
+		let postData={
+            uid: window.localStorage.getItem("uid"),
+            game_id: this.$route.query.game_id,
+            channelid: window.localStorage.getItem('channelid')||1,
+        };
+        this.$http.post('/apis/gamestore/loadgame',{ params: postData, headers:{Authorization:window.localStorage.getItem('access_token'), 'Content-Type': 'application/x-www-form-urlencoded' } })
+        .then((res)=>{
+        	window.localStorage.setItem("gameUrl",res.data.result?res.data.result:'');
+            $("#js-gameIfram").attr("src", data.result); 
+        },(err)=>{
+        	alert(err)
+        })
+
 	},
 	components:{
 		quitGame
@@ -91,7 +121,8 @@ export default{
 		return{
 			isPlatWrapShow:false,
 			isCollected:true,
-			isQuitGameModelShow:false
+			isQuitGameModelShow:false,
+			accountDetail:[]
 		}
 	},
 	methods:{

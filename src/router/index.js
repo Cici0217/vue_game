@@ -8,6 +8,7 @@ import Giftpackage from '@/pages/giftpackage'
 import GameCenter from '@/pages/gameCenter'
 import Collect from '@/pages/gameCenter/collect'
 import GetMoreGameList from '@/pages/gameCenter/getMoreGameList'
+import GiftPackage_gameCenter from '@/pages/gameCenter/giftPackage'
 import GameCatogry from '@/pages/gameCatogry'
 import Gameinclassification from '@/pages/gameinclassification'
 import Welfare from '@/pages/welfare'
@@ -382,6 +383,7 @@ const vueRouter = new Router({
                 path:'/changeGift',
                 name: 'ChangeGift',
                 component: ChangeGift,
+                redirect: '/echangeVirtualGift',
                 children:[
                   {
                     path:'/echangeVirtualGift',
@@ -413,6 +415,11 @@ const vueRouter = new Router({
           path:'/getMoreGameList',
           name: 'GetMoreGameList',
           component: GetMoreGameList
+        },
+        {
+          path:'/giftPackage_gameCenter',
+          name: 'GiftPackage_gameCenter',
+          component: GiftPackage_gameCenter
         }
       ] 
     },

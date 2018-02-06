@@ -50,7 +50,8 @@ export default{
 	},
 	methods:{
 		goForwardGame(id){
-			this.$router.push('/gameCenter')
+                  alert(id)
+                  this.$router.push({ path:'/gameCenter', query:{ game_id: id } });
 		}
 	}
 }
