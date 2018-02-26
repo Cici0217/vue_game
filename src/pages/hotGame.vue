@@ -32,7 +32,7 @@
 					    <div class="swiper">  
 						    <swiper :options="swiperOption">  
 						    	<swiper-slide v-for="(item, index) in slides" :key="index">
-						    		<img :src="item" class="swiper_cc_img">
+						    		<img :src="item">
 						    	</swiper-slide> 
 						    </swiper> 
 						</div>
@@ -42,6 +42,7 @@
 
 			<!-- 游戏页分类 -->
 			<game-category></game-category>
+			<!--
 			<section class="game-mine"> 
 				<div class="mygame-slide-wrap"> 
 				    <div class="swiper-container mygame-swiper swiper-container-horizontal"> 
@@ -53,10 +54,30 @@
 					      	</div>					
 				    	</div> 
 				    </div> 
-				    <!-- <div class="pagination"></div> --> 
 			   </div> 
 			   <div class="mygame-slide-ctl"></div> 
 			</section>
+			-->
+			<section class="game-mine"> 
+				<div class="mygame-slide-wrap"> 
+				    <div class="swiper-container mygame-swiper swiper-container-horizontal"> 
+				    	<div class="swiper-wrapper" id="js_mygameList"> 
+					      	<div class="swiper-slide mygame-item swiper-slide-active"> 
+							    <div class="swiper">  
+								    <swiper :options="swiperOption2">  
+								    	<swiper-slide v-for="(item, index) in slides2" :key="index">
+								    		<img :src="item">
+								    	</swiper-slide> 
+								    </swiper> 
+								</div>
+					      	</div>					
+				    	</div> 
+				    </div> 
+			   </div> 
+			   <div class="mygame-slide-ctl"></div> 
+			</section>
+
+
 			<div id="js_recommendList">
 				<section class="game-part"> 
 					<div class="game-part-title"> 
@@ -180,12 +201,31 @@ export default{
 			slides: [  
         		'http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011901444503645800.jpg',  
           		'http://www.joy84.com:80/gamepic/images/2018/1/15/2018011509260408664713.png'
-        	],  
+        	], 
+        	slides2:[
+        	    'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702124109984839.png',  
+          		'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702202905781636.png',
+          		'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702201403042424.png',
+          		'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702125803429138.png',
+          		'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702124109984839.png',  
+          		'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702202905781636.png',
+          		'http://www.joy84.com:80/gamepic/images/2018/1/17/2018011702201403042424.png',
+        	], 
         	swiperOption: {  
           		debugger: false,    
           		autoplay: true,          
           		slidesPerView: "auto" 
-        	}  
+        	},
+        	swiperOption2: {  
+          		debugger: false,    
+          		autoplay: false,          
+		 		slidesPerView: 4,
+		      	spaceBetween: 13,
+  				loopFillGroupWithBlank: true,
+          		navigation: {
+				    nextEl: '.mygame-slide-ctl'
+				}, 
+        	}   
 		}
 	},
 	created(){		
