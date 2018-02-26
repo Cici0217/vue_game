@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Alertcc from '../node_modules/alert-cc/index.js'
+Vue.use(Alertcc)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

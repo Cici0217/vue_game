@@ -38,8 +38,7 @@
 		<div class="chargeChoice" style="display: none;">
 			<img src="../assets/images/leaguercenter/zfb.png"><span>支付宝支付</span>
 		</div>
-		<div class="chargeNow">立即充值</div>
-		<my-dialog></my-dialog>
+		<div class="chargeNow" @click="tip()">立即充值</div>
 	</div>
 </template>
 
@@ -77,6 +76,9 @@ export default{
 			$(".price").removeClass("active");
 			var el = $event.currentTarget
 			$(el).addClass("active")
+		},
+		tip(){
+			this.$confrimmessagecc('2222')
 		}
 	}
 }

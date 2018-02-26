@@ -1427,6 +1427,7 @@ div.img-head-dialog p.text {
 .banner-swiper .swiper-slide {
   width: 9.7rem;
   height: 3.6rem;
+  margin-left: 0.5rem;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   display: -webkit-box;
@@ -1448,11 +1449,14 @@ div.img-head-dialog p.text {
   transform: scale(0.96);
 }
 .banner-swiper .swiper-slide img {
-  opacity: 0.5;
   width: 9.7rem;
   height: 3.6rem;
   margin: 0 auto;
   display: block;
+  border-radius: .2rem;
+  overflow: hidden;
+  -webkit-transform: scale(.96);
+  transform: scale(.96);
 }
 .banner-swiper .swiper-slide-active a {
   -webkit-transform: scale(1);

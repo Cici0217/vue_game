@@ -11,6 +11,7 @@
 		    </router-link>
 		</div>
 		<div class="app-conten-wrap setting-bottom">
+			<!--
 			<section class="game-banner banner-slide">
 		        <div class="banner-slide-wrap">
 		            <div class="swiper-container banner-swiper swiper-container-horizontal">
@@ -24,12 +25,27 @@
 		            </div>
 		        </div>
 		    </section>
+		    -->
+		    <section class="game-banner banner-slide">
+		    	<div class="banner-slide-wrap">
+		            <div class="swiper-container banner-swiper swiper-container-horizontal">
+					    <div class="swiper">  
+						    <swiper :options="swiperOption">  
+						    	<swiper-slide v-for="(item, index) in slides" :key="index">
+						    		<img :src="item" class="swiper_cc_img">
+						    	</swiper-slide> 
+						    </swiper> 
+						</div>
+					</div>
+				</div>
+			</section>
+
 			<!-- 游戏页分类 -->
 			<game-category></game-category>
 			<section class="game-mine"> 
 				<div class="mygame-slide-wrap"> 
 				    <div class="swiper-container mygame-swiper swiper-container-horizontal"> 
-				    	<div class="swiper-wrapper" id="js_mygameList"> +
+				    	<div class="swiper-wrapper" id="js_mygameList"> 
 					      	<div class="swiper-slide mygame-item swiper-slide-active" style="width: 76.5px;" v-for="item in mygameList"> 
 						       	<router-link tag="a" :to="{ path:'/gameCenter', query:{ game_id: item.id }}"> 
 						       		<img :src="item.icon_url" alt="" style="opacity: 1;" /> 
@@ -141,12 +157,18 @@
 @import '../assets/css/game_styles.css'
 </style>
 
+
+
 <script>
 import GameCategory from '../components/game/gameCategory'
+import { swiper, swiperSlide } from 'vue-awesome-swiper' 
+
 
 export default{
 	components:{
-		GameCategory	
+		GameCategory,
+		swiper,  
+      	swiperSlide  	
 	},
 	data(){
 		return {
@@ -154,10 +176,19 @@ export default{
 			hotGameData2:[],
 			classicGameData3:[],
 			search:'一世之尊',
-			mygameList:[]
+			mygameList:[],
+			slides: [  
+        		'http://gametest.phicomm.com:80/gamepic/images/2018/1/19/2018011901444503645800.jpg',  
+          		'http://www.joy84.com:80/gamepic/images/2018/1/15/2018011509260408664713.png'
+        	],  
+        	swiperOption: {  
+          		debugger: false,    
+          		autoplay: true,          
+          		slidesPerView: "auto" 
+        	}  
 		}
 	},
-	created(){
+	created(){		
 		this.$http.get('/apis/gamestore/recommendedgame',{ params:{ position:1,label:1 }})
 		.then((res)=>{
 			this.hotGameData1 = res.data.result[0].game;
