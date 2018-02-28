@@ -164,7 +164,9 @@
 								<div class="list_game_btn"> 
 								 	<input type="button"  value="开始" class="app-btn app-btn-default" @click="goForwardGame(item.id)"> 
 								</div> 
-							</li>   
+							</li>
+							<infinite-loading :on-infinite="onInfinite" ref="infiniteLoading">
+						    </infinite-loading>   
 						</ul>  
 					</div>
 				</section>
@@ -183,19 +185,22 @@
 <script>
 import GameCategory from '../components/game/gameCategory'
 import { swiper, swiperSlide } from 'vue-awesome-swiper' 
-
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default{
 	components:{
 		GameCategory,
 		swiper,  
-      	swiperSlide  	
+      	swiperSlide,
+      	InfiniteLoading  	
 	},
 	data(){
 		return {
 			hotGameData1:[],
 			hotGameData2:[],
 			classicGameData3:[],
+			page_no_hotGameData3:1,   //默认显示第一页数据
+          	page_size_hotGameData3:7, //每次请求7条
 			search:'一世之尊',
 			mygameList:[],
 			slides: [  
@@ -229,13 +234,14 @@ export default{
 		}
 	},
 	created(){		
-		this.$http.get('/apis/gamestore/recommendedgame',{ params:{ position:1,label:1 }})
+		this.$http.get('/apis/gamestore/recommendedgame',{ params:{ position:1,label:1}})
 		.then((res)=>{
 			this.hotGameData1 = res.data.result[0].game;
 			this.hotGameData2 = res.data.result[1].game;
-			this.classicGameData3 = res.data.result[2].game;
+			//this.classicGameData3 = res.data.result[2].game;
 	 
 		})
+		this.getClassicGameData3()  //获取经典游戏列表
 		/* 我的游戏 */
 		this.$http.get('/apis/gamestore/mygame',{ params:{ uid: window.localStorage.getItem("uid") }})
 		.then((res)=>{
@@ -250,7 +256,26 @@ export default{
 		},
 		goForwardGame(id){
 			this.$router.push({ path:'/gameCenter', query:{ game_id: id } })
-		}
+		},
+		getClassicGameData3(){
+			this.$http.get('/apis/gamestore/recommendedgame',{ params:{ position:1,label:1,page_no:this.page_no_hotGameData3,page_size:this.page_size_hotGameData3  }})
+						//page_no和page_size是假设使用的两个参数,后台暂未使用
+			.then((res)=>{
+				if (res.data.result[2].game.length) {
+					// 如果有数据则进入将新的数据与老的数据拼接
+					this.classicGameData3 = this.classicGameData3.concat(res.data.result[2].game);
+					this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded');
+					this.page_no_hotGameData3+=1;  //将页码加1
+				}else{
+					this.$refs.infiniteLoading.$emit('$InfiniteLoading:complete'); //没有数据显示没有更多
+				}
+			})
+		},
+		onInfinite() {
+			if(this.page_no_hotGameData3!=1){  //是因为我在页面初始化时请求了第一页的数据，所以当页面等于2时才请求数据
+            	this.getClassicGameData3()
+        	}
+	    }
 	}
 }
 </script>
